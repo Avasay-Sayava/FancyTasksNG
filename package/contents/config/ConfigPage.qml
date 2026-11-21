@@ -74,6 +74,8 @@ Kirigami.Page {
     property bool cfg_highlightWindowsDefault: true
     property bool cfg_indicateAudioStreams: true
     property bool cfg_indicateAudioStreamsDefault: true
+    property bool cfg_showAudioBadge: false
+    property bool cfg_showAudioBadgeDefault: false
     property int cfg_iconScale: 100
     property int cfg_iconScaleDefault: 100
     property int cfg_iconSizePx: 32
@@ -112,6 +114,16 @@ Kirigami.Page {
     property int cfg_iconZoomFactorDefault: 20
     property int cfg_iconZoomDuration: 200
     property int cfg_iconZoomDurationDefault: 250
+    property bool cfg_iconHoverBacking: true
+    property bool cfg_iconHoverBackingDefault: true
+    property int cfg_iconHoverBackingOpacity: 25
+    property int cfg_iconHoverBackingOpacityDefault: 25
+    property bool cfg_iconHoverShrink: true
+    property bool cfg_iconHoverShrinkDefault: true
+    property int cfg_iconHoverShrinkScale: 85
+    property int cfg_iconHoverShrinkScaleDefault: 85
+    property bool cfg_iconHoverHighlight: false
+    property bool cfg_iconHoverHighlightDefault: false
 
     // --- Appearance / Behavior ---
     property int cfg_groupingStrategy: 0

@@ -14,7 +14,7 @@ TRANSLATE_DIR="${SCRIPT_DIR}/translate"
 cd "${TRANSLATE_DIR}"
 
 plasmoidName=$(get_metadata "Id" "${METADATA_FILE}")
-projectName="plasma_applet_${plasmoidName}"
+projectName="plasma_applet_io.github.daydve.fancytasksng"
 
 if [ -z "$plasmoidName" ]; then
     log_error "Couldn't read 'Id' from metadata.json."

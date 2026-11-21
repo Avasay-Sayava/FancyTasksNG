@@ -232,6 +232,62 @@ ConfigPage {
             ToolTip.text: Wrappers.i18n("Duration of the zoom animation in milliseconds")
         }
                 }
+
+                CheckBox {
+        id: cfg_iconHoverBacking
+        text: Wrappers.i18n("Show highlight backing under icon on hover")
+        visible: appearancePage.cfg_iconOnly === 1 && cfg_taskHoverEffect.checked
+        checked: appearancePage.cfg_iconHoverBacking
+        onToggled: appearancePage.cfg_iconHoverBacking = checked
+                }
+
+                RowLayout {
+        visible: appearancePage.cfg_iconOnly === 1 && cfg_taskHoverEffect.checked && cfg_iconHoverBacking.checked
+        spacing: appearancePage.smallSpacing
+        Label {
+            text: Wrappers.i18n("Highlight backing opacity (%):")
+        }
+        SpinBox {
+            id: iconHoverBackingOpacity
+            from: 5
+            to: 100
+            stepSize: 5
+            value: appearancePage.cfg_iconHoverBackingOpacity
+            onValueModified: appearancePage.cfg_iconHoverBackingOpacity = value
+        }
+                }
+
+                CheckBox {
+        id: cfg_iconHoverShrink
+        text: Wrappers.i18n("Shrink icon on hover")
+        visible: appearancePage.cfg_iconOnly === 1 && cfg_taskHoverEffect.checked
+        checked: appearancePage.cfg_iconHoverShrink
+        onToggled: appearancePage.cfg_iconHoverShrink = checked
+                }
+
+                RowLayout {
+        visible: appearancePage.cfg_iconOnly === 1 && cfg_taskHoverEffect.checked && cfg_iconHoverShrink.checked
+        spacing: appearancePage.smallSpacing
+        Label {
+            text: Wrappers.i18n("Hover shrink scale (%):")
+        }
+        SpinBox {
+            id: iconHoverShrinkScale
+            from: 50
+            to: 99
+            stepSize: 1
+            value: appearancePage.cfg_iconHoverShrinkScale
+            onValueModified: appearancePage.cfg_iconHoverShrinkScale = value
+        }
+                }
+
+                CheckBox {
+        id: cfg_iconHoverHighlight
+        text: Wrappers.i18n("Use default Plasma theme highlight flash on hover")
+        visible: appearancePage.cfg_iconOnly === 1 && cfg_taskHoverEffect.checked
+        checked: appearancePage.cfg_iconHoverHighlight
+        onToggled: appearancePage.cfg_iconHoverHighlight = checked
+                }
     
                 Item { height: appearancePage.largeSpacing }
     

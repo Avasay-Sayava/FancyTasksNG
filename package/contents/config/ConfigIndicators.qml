@@ -563,6 +563,15 @@ ConfigPage {
             onToggled: indicatorsPage.cfg_indicateAudioStreams = checked
             visible: indicatorsPage.plasmaPaAvailable
         }
+
+        CheckBox {
+            id: cfg_showAudioBadge
+            text: Wrappers.i18n("Show audio indicator badge on task buttons")
+            checked: indicatorsPage.cfg_showAudioBadge
+            enabled: cfg_indicateAudioStreams.checked
+            onToggled: indicatorsPage.cfg_showAudioBadge = checked
+            visible: indicatorsPage.plasmaPaAvailable
+        }
     
         Item { height: indicatorsPage.largeSpacing }
     

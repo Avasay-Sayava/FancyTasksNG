@@ -194,6 +194,10 @@
             >Whether to indicate applications that are playing audio including an option to mute them.</label>
       <default>true</default>
     </entry>
+    <entry name="showAudioBadge" type="Bool">
+      <label>Whether to show the audio indicator badge on task buttons when playing or muted.</label>
+      <default>false</default>
+    </entry>
     <entry name="iconScale" type="Int">
       <label>Scale of taskbar icons.</label>
       <default>100</default>
@@ -464,6 +468,30 @@
         <default>250</default>
         <label>Icon zoom animation duration</label>
         <tooltip>Duration of the zoom animation in milliseconds</tooltip>
+    </entry>
+    <entry name="iconHoverBacking" type="Bool">
+      <label>Show a themed highlight backing shape under the icon when hovered.</label>
+      <default>true</default>
+    </entry>
+    <entry name="iconHoverBackingOpacity" type="Int">
+      <default>25</default>
+      <min>5</min>
+      <max>100</max>
+      <label>Opacity of the hover highlight backing shape (%).</label>
+    </entry>
+    <entry name="iconHoverShrink" type="Bool">
+      <label>Shrink the icon slightly when hovered.</label>
+      <default>true</default>
+    </entry>
+    <entry name="iconHoverShrinkScale" type="Int">
+      <default>85</default>
+      <min>50</min>
+      <max>99</max>
+      <label>Target scale of the icon when hovered (%).</label>
+    </entry>
+    <entry name="iconHoverHighlight" type="Bool">
+      <label>Enable default Plasma theme icon highlight flash on hover.</label>
+      <default>false</default>
     </entry>
     <entry name="showBadges" type="Bool">
       <label i18n-label="Show notification badges">Whether to show notification badges on task icons and in tooltips.</label>

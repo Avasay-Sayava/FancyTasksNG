@@ -24,10 +24,10 @@
         "Description[ru]": "Многофункциональная настраиваемая панель задач с современным дизайном и приятными анимациями",
         "EnabledByDefault": true,
         "Icon": "preferences-system-windows-effect-highlightwindow",
-        "Id": "io.github.daydve.fancytasksng",
+        "Id": "io.github.daydve.fancytasksng-custom",
         "License": "GPL-3.0+",
-        "Name": "Fancy Tasks NG",
-        "Name[ru]": "Fancy Tasks NG",
+        "Name": "Fancy Tasks NG (Custom)",
+        "Name[ru]": "Fancy Tasks NG (Custom)",
         "ServiceTypes": [
             "Plasma/Applet"
         ],

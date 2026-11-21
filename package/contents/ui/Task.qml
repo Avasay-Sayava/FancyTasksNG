@@ -262,7 +262,7 @@ Item {
 
 
     property bool completed: false
-    readonly property bool audioIndicatorsEnabled: task.config.indicateAudioStreams
+    readonly property bool audioIndicatorsEnabled: task.config.indicateAudioStreams && task.config.showAudioBadge
     readonly property var winIdList: {
         if (!task.model || !task.model.WinIdList) return [];
         // Deep copy without slice() just in case

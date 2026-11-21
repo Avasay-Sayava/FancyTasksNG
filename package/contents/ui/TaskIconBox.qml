@@ -42,6 +42,7 @@ Item {
     readonly property bool _taskHighlighted: iconBox.taskItem ? iconBox.taskItem.highlighted : false
     readonly property bool _taskHasModel: iconBox.taskItem ? !!iconBox.taskItem.model : false
     readonly property var _iconMask: iconMask
+    readonly property bool _hoverEffectActive: iconBox.config.taskHoverEffect && iconBox._taskHighlighted
 
     anchors.centerIn: iconBox._iconsOnly ? parent : undefined
     anchors.top: iconBox._iconsOnly ? undefined : parent.top
@@ -206,13 +207,45 @@ Item {
             height: parent.targetRenderSize
             scale: parent.iconSize / Math.max(1, parent.targetRenderSize)
 
+            Rectangle {
+                id: hoverBackingRect
+                anchors.fill: parent
+                antialiasing: true
+                radius: iconBox.config.clipIconToShape
+                    ? ((iconBox.config.iconClipRadius / 200) * Math.min(parent.width, parent.height))
+                    : (width / 2)
+                color: Kirigami.Theme.highlightColor
+                opacity: (iconBox.config.iconHoverBacking && iconBox._hoverEffectActive)
+                    ? (iconBox.config.iconHoverBackingOpacity / 100.0)
+                    : 0.0
+                visible: opacity > 0.0
+
+                Behavior on opacity {
+                    NumberAnimation {
+                        duration: 200
+                        easing.type: Easing.InOutQuad
+                    }
+                }
+            }
+
             Kirigami.Icon {
                 id: innerIcon
                 anchors.fill: parent
 
                 roundToIconSize: false
-                active: iconBox._taskHighlighted
+                active: iconBox.config.iconHoverHighlight && iconBox._hoverEffectActive
                 enabled: true
+
+                scale: (iconBox.config.iconHoverShrink && iconBox._hoverEffectActive)
+                    ? (iconBox.config.iconHoverShrinkScale / 100.0)
+                    : 1.0
+
+                Behavior on scale {
+                    NumberAnimation {
+                        duration: 180
+                        easing.type: Easing.InOutQuad
+                    }
+                }
 
                 source: iconBox._taskHasModel ? iconBox.taskItem.model.decoration : ""
                 opacity: 1.0

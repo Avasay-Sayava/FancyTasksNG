@@ -591,6 +591,17 @@ Item {
 
                                         source: mockTask.iconName
                                         roundToIconSize: false
+                                        active: mockTask.isHovered && mockTask.cfgReady && mockTask.cfg.cfg_taskHoverEffect && mockTask.cfg.cfg_iconHoverHighlight
+                                        scale: (mockTask.isHovered && mockTask.cfgReady && mockTask.cfg.cfg_taskHoverEffect && mockTask.cfg.cfg_iconHoverShrink)
+                                            ? (mockTask.cfg.cfg_iconHoverShrinkScale / 100.0)
+                                            : 1.0
+
+                                        Behavior on scale {
+                                            NumberAnimation {
+                                                duration: 180
+                                                easing.type: Easing.InOutQuad
+                                            }
+                                        }
 
                                         layer.enabled: mockTask.cfgReady && mockTask.cfg.cfg_clipIconToShape
                                         layer.smooth: true
@@ -656,6 +667,28 @@ Item {
                                         z: -1
                                     }
 
+                                    Rectangle {
+                                        id: previewHoverBacking
+                                        anchors.fill: taskIcon
+                                        antialiasing: true
+                                        radius: (mockTask.cfgReady && mockTask.cfg.cfg_clipIconToShape)
+                                            ? ((mockTask.cfg.cfg_iconClipRadius / 200) * Math.min(taskIcon.width, taskIcon.height))
+                                            : (taskIcon.width / 2)
+                                        color: Kirigami.Theme.highlightColor
+                                        opacity: (mockTask.isHovered && mockTask.cfgReady && mockTask.cfg.cfg_taskHoverEffect && mockTask.cfg.cfg_iconHoverBacking)
+                                            ? (mockTask.cfg.cfg_iconHoverBackingOpacity / 100.0)
+                                            : 0.0
+                                        visible: opacity > 0.0
+                                        z: -1
+
+                                        Behavior on opacity {
+                                            NumberAnimation {
+                                                duration: 200
+                                                easing.type: Easing.InOutQuad
+                                            }
+                                        }
+                                    }
+
                                     // Notification badge (proportional to taskIcon, scales with zoom)
                                     FancyUI.Badge {
                                         visible: mockTask.showBadge && mockTask.cfgReady && mockTask.cfg.cfg_showBadges
@@ -680,7 +713,7 @@ Item {
                                 // Audio indicator (Matching TaskBadgeOverlay.qml exactly)
                                 FancyUI.Badge {
                                     id: audioBadge
-                                    visible: (mockTask.playingAudio || mockTask.isMuted) && mockTask.cfgReady && mockTask.cfg.cfg_indicateAudioStreams
+                                    visible: (mockTask.playingAudio || mockTask.isMuted) && mockTask.cfgReady && mockTask.cfg.cfg_indicateAudioStreams && mockTask.cfg.cfg_showAudioBadge
                                     z: 50
 
                                     readonly property real iconR: Math.min(taskIcon.width, taskIcon.height) / 2
