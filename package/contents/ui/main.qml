@@ -227,6 +227,7 @@ PlasmoidItem {
 
     property Task currentHoveredTask: null
     property Task instantHoveredTask: null
+    property Task directHoveredTask: null
     property int instantHoveredIndex: instantHoveredTask ? instantHoveredTask.index : -1
     property real instantHoveredFraction: 0.5
     property bool isTooltipHovered: false
@@ -701,6 +702,16 @@ PlasmoidItem {
 
         HoverHandler {
             id: rootHoverHandler
+            function updateDirectHoveredTask(): void {
+                if (!hovered) {
+                    tasks.directHoveredTask = null;
+                    return;
+                }
+                const pt = taskListView.mapFromItem(parent, point.position.x, point.position.y);
+                tasks.directHoveredTask = taskListView.childAt(pt.x, pt.y) as Task;
+            }
+            onHoveredChanged: updateDirectHoveredTask()
+            onPointChanged: updateDirectHoveredTask()
         }
 
         TaskManager.VirtualDesktopInfo {

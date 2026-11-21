@@ -40,6 +40,12 @@ Item {
     readonly property bool _contextMenuOpen: (iconBox.taskItem && iconBox.taskItem.contextMenu) ? (iconBox.taskItem.contextMenu.status === PlasmaExtras.Menu.Open) : false
     readonly property bool _iconOverflows: iconBox.taskItem ? iconBox.taskItem.iconOverflows : false
     readonly property bool _taskHighlighted: iconBox.taskItem ? iconBox.taskItem.highlighted : false
+    readonly property bool _iconHovered: {
+        if (!iconBox.taskItem) return false;
+        if (iconBox.taskItem.inPopup) return iconBox.taskItem.activeFocus || iconBox._taskHovered;
+        if (iconBox.tasksRoot) return iconBox.tasksRoot.directHoveredTask === iconBox.taskItem;
+        return iconBox._taskHovered;
+    }
     readonly property bool _taskHasModel: iconBox.taskItem ? !!iconBox.taskItem.model : false
     readonly property var _iconMask: iconMask
 
@@ -214,7 +220,7 @@ Item {
                     ? ((iconBox.config.iconClipRadius / 200) * Math.min(parent.width, parent.height))
                     : (width / 2)
                 color: Kirigami.Theme.highlightColor
-                opacity: ((iconBox.config.iconHoverBacking ?? true) && iconBox._taskHighlighted)
+                opacity: ((iconBox.config.iconHoverBacking ?? true) && iconBox._iconHovered)
                     ? ((iconBox.config.iconHoverBackingOpacity ?? 25) / 100.0)
                     : 0.0
                 visible: opacity > 0.0
@@ -232,10 +238,10 @@ Item {
                 anchors.fill: parent
 
                 roundToIconSize: false
-                active: Boolean(iconBox.config.iconHoverHighlight) && iconBox._taskHighlighted
+                active: Boolean(iconBox.config.iconHoverHighlight) && iconBox._iconHovered
                 enabled: true
 
-                scale: ((iconBox.config.iconHoverShrink ?? true) && iconBox._taskHighlighted)
+                scale: ((iconBox.config.iconHoverShrink ?? true) && iconBox._iconHovered)
                     ? ((iconBox.config.iconHoverShrinkScale ?? 85) / 100.0)
                     : 1.0
 

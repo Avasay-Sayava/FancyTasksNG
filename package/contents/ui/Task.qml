@@ -351,6 +351,7 @@ Item {
     onContainsMouseChanged: {
         if (containsMouse) {
             tasksRoot.instantHoveredTask = task;
+            tasksRoot.directHoveredTask = task;
             task.forceActiveFocus(Qt.MouseFocusReason);
             closeTimer.stop();
             
@@ -363,6 +364,9 @@ Item {
         } else {
             if (tasksRoot.instantHoveredTask === task) {
                 tasksRoot.instantHoveredTask = null;
+            }
+            if (tasksRoot.directHoveredTask === task) {
+                tasksRoot.directHoveredTask = null;
             }
             openTimer.stop();
             switchTimer.stop();
@@ -963,6 +967,9 @@ Item {
         }
     }
     Component.onDestruction: {
+        if (tasksRoot && tasksRoot.directHoveredTask === task) {
+            tasksRoot.directHoveredTask = null;
+        }
         if (moveAnim.running) {
             (task.parent as TaskList).animationsRunning -= 1;
         }
