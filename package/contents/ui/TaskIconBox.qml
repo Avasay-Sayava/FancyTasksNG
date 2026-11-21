@@ -42,7 +42,6 @@ Item {
     readonly property bool _taskHighlighted: iconBox.taskItem ? iconBox.taskItem.highlighted : false
     readonly property bool _taskHasModel: iconBox.taskItem ? !!iconBox.taskItem.model : false
     readonly property var _iconMask: iconMask
-    readonly property bool _hoverEffectActive: iconBox.config.taskHoverEffect && iconBox._taskHighlighted
 
     anchors.centerIn: iconBox._iconsOnly ? parent : undefined
     anchors.top: iconBox._iconsOnly ? undefined : parent.top
@@ -215,8 +214,8 @@ Item {
                     ? ((iconBox.config.iconClipRadius / 200) * Math.min(parent.width, parent.height))
                     : (width / 2)
                 color: Kirigami.Theme.highlightColor
-                opacity: (iconBox.config.iconHoverBacking && iconBox._hoverEffectActive)
-                    ? (iconBox.config.iconHoverBackingOpacity / 100.0)
+                opacity: ((iconBox.config.iconHoverBacking ?? true) && iconBox._taskHighlighted)
+                    ? ((iconBox.config.iconHoverBackingOpacity ?? 25) / 100.0)
                     : 0.0
                 visible: opacity > 0.0
 
@@ -233,11 +232,11 @@ Item {
                 anchors.fill: parent
 
                 roundToIconSize: false
-                active: iconBox.config.iconHoverHighlight && iconBox._hoverEffectActive
+                active: Boolean(iconBox.config.iconHoverHighlight) && iconBox._taskHighlighted
                 enabled: true
 
-                scale: (iconBox.config.iconHoverShrink && iconBox._hoverEffectActive)
-                    ? (iconBox.config.iconHoverShrinkScale / 100.0)
+                scale: ((iconBox.config.iconHoverShrink ?? true) && iconBox._taskHighlighted)
+                    ? ((iconBox.config.iconHoverShrinkScale ?? 85) / 100.0)
                     : 1.0
 
                 Behavior on scale {

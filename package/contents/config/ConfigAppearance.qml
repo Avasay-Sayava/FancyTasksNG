@@ -236,13 +236,13 @@ ConfigPage {
                 CheckBox {
         id: cfg_iconHoverBacking
         text: Wrappers.i18n("Show highlight backing under icon on hover")
-        visible: appearancePage.cfg_iconOnly === 1 && cfg_taskHoverEffect.checked
+        visible: appearancePage.cfg_iconOnly === 1
         checked: appearancePage.cfg_iconHoverBacking
         onToggled: appearancePage.cfg_iconHoverBacking = checked
                 }
 
                 RowLayout {
-        visible: appearancePage.cfg_iconOnly === 1 && cfg_taskHoverEffect.checked && cfg_iconHoverBacking.checked
+        visible: appearancePage.cfg_iconOnly === 1 && cfg_iconHoverBacking.checked
         spacing: appearancePage.smallSpacing
         Label {
             text: Wrappers.i18n("Highlight backing opacity (%):")
@@ -260,13 +260,13 @@ ConfigPage {
                 CheckBox {
         id: cfg_iconHoverShrink
         text: Wrappers.i18n("Shrink icon on hover")
-        visible: appearancePage.cfg_iconOnly === 1 && cfg_taskHoverEffect.checked
+        visible: appearancePage.cfg_iconOnly === 1
         checked: appearancePage.cfg_iconHoverShrink
         onToggled: appearancePage.cfg_iconHoverShrink = checked
                 }
 
                 RowLayout {
-        visible: appearancePage.cfg_iconOnly === 1 && cfg_taskHoverEffect.checked && cfg_iconHoverShrink.checked
+        visible: appearancePage.cfg_iconOnly === 1 && cfg_iconHoverShrink.checked
         spacing: appearancePage.smallSpacing
         Label {
             text: Wrappers.i18n("Hover shrink scale (%):")
@@ -284,7 +284,7 @@ ConfigPage {
                 CheckBox {
         id: cfg_iconHoverHighlight
         text: Wrappers.i18n("Use default Plasma theme highlight flash on hover")
-        visible: appearancePage.cfg_iconOnly === 1 && cfg_taskHoverEffect.checked
+        visible: appearancePage.cfg_iconOnly === 1
         checked: appearancePage.cfg_iconHoverHighlight
         onToggled: appearancePage.cfg_iconHoverHighlight = checked
                 }

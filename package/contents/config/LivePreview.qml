@@ -591,8 +591,8 @@ Item {
 
                                         source: mockTask.iconName
                                         roundToIconSize: false
-                                        active: mockTask.isHovered && mockTask.cfgReady && mockTask.cfg.cfg_taskHoverEffect && mockTask.cfg.cfg_iconHoverHighlight
-                                        scale: (mockTask.isHovered && mockTask.cfgReady && mockTask.cfg.cfg_taskHoverEffect && mockTask.cfg.cfg_iconHoverShrink)
+                                        active: mockTask.isHovered && mockTask.cfgReady && mockTask.cfg.cfg_iconHoverHighlight
+                                        scale: (mockTask.isHovered && mockTask.cfgReady && mockTask.cfg.cfg_iconHoverShrink)
                                             ? (mockTask.cfg.cfg_iconHoverShrinkScale / 100.0)
                                             : 1.0
 
@@ -675,7 +675,7 @@ Item {
                                             ? ((mockTask.cfg.cfg_iconClipRadius / 200) * Math.min(taskIcon.width, taskIcon.height))
                                             : (taskIcon.width / 2)
                                         color: Kirigami.Theme.highlightColor
-                                        opacity: (mockTask.isHovered && mockTask.cfgReady && mockTask.cfg.cfg_taskHoverEffect && mockTask.cfg.cfg_iconHoverBacking)
+                                        opacity: (mockTask.isHovered && mockTask.cfgReady && mockTask.cfg.cfg_iconHoverBacking)
                                             ? (mockTask.cfg.cfg_iconHoverBackingOpacity / 100.0)
                                             : 0.0
                                         visible: opacity > 0.0
